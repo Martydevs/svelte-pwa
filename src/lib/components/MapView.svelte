@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { DefaultMarker, MapLibre, Popup } from 'svelte-maplibre';
-  import '$lib/styles/map-view.css';
+  import { DefaultMarker, MapLibre, Popup } from "svelte-maplibre";
+  import "$lib/styles/map-view.css";
 
   interface Props {
     coords: GeolocationCoordinates;
@@ -10,11 +10,17 @@
 </script>
 
 <MapLibre
-  center={[coords.longitude, coords.latitude]}
   zoom={18}
   class="map"
   standardControls
-  style="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
+  onmovestart={(ev) => {
+    console.log(ev);
+  }}
+  onmoveend={(ev) => {
+    console.log(ev);
+  }}
+  center={[coords.longitude, coords.latitude]}
+  style="https://tiles.openfreemap.org/styles/liberty"
 >
   <DefaultMarker lngLat={[coords.longitude, coords.latitude]}>
     <Popup offset={[0, 0]}>

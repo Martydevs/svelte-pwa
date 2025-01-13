@@ -1,15 +1,10 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  import MapView from "$lib/components/MapView.svelte";
-  import { getLocation } from "$lib/utils/geolocation";
-
-  let coords: GeolocationCoordinates | null = $state(null)
-
-  onMount(async () => {
-    coords = await getLocation()
-  })
 </script>
 
-{#if coords}
-  <MapView {coords} />
-{/if}
+<svelte:head>
+  <title>Home</title>
+  <meta name="description" content="Svelte demo app" />
+</svelte:head>
+
+<h1>Home</h1>
+<a href="/ubicaciones" class="btn btn-link text-current">Ir a ubicaciones</a>
