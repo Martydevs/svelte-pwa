@@ -1,0 +1,27 @@
+{
+  "theme_color": "#ff7300",
+  "background_color": "#2EC6FE",
+  "icons": [
+    {
+      "purpose": "maskable",
+      "sizes": "512x512",
+      "src": "icon512_maskable.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "512x512",
+      "src": "icon512_rounded.png",
+      "type": "image/png"
+    }
+  ],
+  "orientation": "portrait",
+  "display": "standalone",
+  "dir": "auto",
+  "lang": "es",
+  "name": "svkit-pwa",
+  "short_name": "skitpwa",
+  "start_url": "/",
+  "scope": "./",
+  "description": "A PWA powered with Svelte-Kit"
+}
