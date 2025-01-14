@@ -6,7 +6,7 @@ export async function detectSWUpdate() {
 
     newSW?.addEventListener("statechange", () => {
       if (newSW.state === "installed") {
-        if (confirm("New app available. Load new version?")) {
+        if (confirm("Hay una nueva versión de la aplicación disponible, desea actualizar?")) {
           newSW.postMessage({ action: "SKIP_WAITING" });
           window.location.reload();
         }

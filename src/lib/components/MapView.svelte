@@ -1,5 +1,6 @@
 <script lang="ts">
   import { DefaultMarker, MapLibre, Popup } from "svelte-maplibre";
+  import mapStyles from "$lib/styles/mapview.json";
   import "$lib/styles/map-view.css";
 
   interface Props {
@@ -14,7 +15,7 @@
   class="map"
   standardControls
   center={[coords.longitude, coords.latitude]}
-  style="https://tiles.openfreemap.org/styles/liberty"
+  style={mapStyles}
 >
   <DefaultMarker lngLat={[coords.longitude, coords.latitude]}>
     <Popup offset={[0, 0]}>

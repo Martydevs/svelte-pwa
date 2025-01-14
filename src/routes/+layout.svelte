@@ -1,6 +1,5 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { page } from "$app/state";
   import { detectSWUpdate } from "$lib/utils/sw";
 
   import "$lib/styles/app.css";
