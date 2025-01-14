@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { loadMapViewAsync } from "$lib/snippets/LoadMapview.svelte";
+  import MapView from "$lib/components/MapView.svelte";
+  import { getLocation } from "$lib/utils/geolocation";
 </script>
 
 <svelte:head>
@@ -7,7 +8,12 @@
   <meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-{@render loadMapViewAsync()}
-<div class="bg-base-100 z-50 absolute bottom-1 left-1/2 transform -translate-x-1/2 w-3/12 py-5 rounded-lg">
-  Controls here.
-</div>
+<section class="w-full min-h-svh flex flex-col items-center">
+  {#await getLocation()}
+    <p>Cargando ubicación...</p>
+  {:then coords}
+    <MapView {coords} />
+  {:catch error}
+    <p>{error.message}</p>
+  {/await}
+</section>

@@ -13,12 +13,6 @@
   zoom={18}
   class="map"
   standardControls
-  onmovestart={(ev) => {
-    console.log(ev);
-  }}
-  onmoveend={(ev) => {
-    console.log(ev);
-  }}
   center={[coords.longitude, coords.latitude]}
   style="https://tiles.openfreemap.org/styles/liberty"
 >
