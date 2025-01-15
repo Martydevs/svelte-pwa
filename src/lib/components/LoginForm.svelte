@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { enhance } from "$app/forms";
   import * as Form from "$lib/components/ui/form";
   import { Input } from "$lib/components/ui/input";
   import { schema as formSchema } from "$lib/schemas/login";
@@ -23,7 +24,7 @@
   const { form: formData } = form;
 </script>
 
-<form method="POST" action="?/login">
+<form method="POST" action="?/login" autocomplete="off" use:enhance>
   <Form.Field {form} name="telefono">
     <Form.Control let:attrs>
       <Form.Label>Teléfono</Form.Label>

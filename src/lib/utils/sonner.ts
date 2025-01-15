@@ -1,9 +1,17 @@
 import { toast } from "svelte-sonner";
 
-export function showToastSuccess() {
-  toast.info("Cargando ubicación...");
+export function showToastSuccess(msg: string) {
+  toast.info(msg);
 }
 
-export function showToastError() {
-  toast.error("No se pudo obtener la ubicación, intenta de nuevo");
+export function showToastError(msg: string) {
+  toast.error(msg);
+}
+
+export function showToastInfo(msg: string) {
+  toast.info(msg);
+}
+
+export function showToastWarning(msg: string) {
+  toast.warning(msg);
 }

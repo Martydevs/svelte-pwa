@@ -1,14 +1,15 @@
 <script lang="ts">
-  import * as Form from "$lib/components/ui/form";
-  import { Input } from "$lib/components/ui/input";
-  import { schema as formSchema } from "$lib/schemas/register";
-  import type { RegisterFormSchema } from "$lib/schemas/register";
   import {
     type SuperValidated,
     type Infer,
     superForm,
   } from "sveltekit-superforms";
   import { zodClient } from "sveltekit-superforms/adapters";
+  import { enhance } from "$app/forms";
+  import * as Form from "$lib/components/ui/form";
+  import { Input } from "$lib/components/ui/input";
+  import { schema as formSchema } from "$lib/schemas/register";
+  import type { RegisterFormSchema } from "$lib/schemas/register";
 
   interface Props {
     data: SuperValidated<Infer<RegisterFormSchema>>;
@@ -18,12 +19,12 @@
 
   const form = superForm(data, {
     validators: zodClient(formSchema),
-  });
+  })
 
   const { form: formData } = form;
 </script>
 
-<form method="POST" action="?/register">
+<form method="POST" action="?/register" autocomplete="off" use:enhance>
   <Form.Field {form} name="nombre">
     <Form.Control let:attrs>
       <Form.Label>Nombre</Form.Label>
