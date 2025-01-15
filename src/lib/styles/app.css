@@ -76,3 +76,13 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .hero-title {
+    @apply text-6xl font-extrabold leading-tight tracking-tighter md:text-8xl;
+  }
+
+  .submit-button {
+    @apply w-full mt-4;
+  }
+}

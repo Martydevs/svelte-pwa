@@ -19,7 +19,7 @@
 >
   <DefaultMarker lngLat={[coords.longitude, coords.latitude]}>
     <Popup offset={[0, 0]}>
-      <span class="font-bold text-lg">Tu ubicación</span>
+      <span class="font-bold text-lg text-dark">Tu ubicación</span>
     </Popup>
   </DefaultMarker>
 </MapLibre>
