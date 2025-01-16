@@ -1,7 +1,15 @@
-import { options } from "$lib/config/geolocation";
+const options: PositionOptions = {
+  enableHighAccuracy: true,
+  maximumAge: 0,
+  timeout: 5000,
+};
 
-export async function getLocation(successToast: (msg: string) => void, errorToast: (msg: string) => void): Promise<GeolocationCoordinates> {
+export async function getLocation(
+  successToast: (msg: string) => void,
+  errorToast: (msg: string) => void
+): Promise<GeolocationCoordinates> {
   const { promise, resolve, reject } = Promise.withResolvers<GeolocationCoordinates>();
+
   navigator.geolocation.getCurrentPosition(
     (position) => {
       successToast("Ubicación obtenida");
@@ -13,5 +21,7 @@ export async function getLocation(successToast: (msg: string) => void, errorToas
     },
     options
   );
+
   return promise;
 }
+

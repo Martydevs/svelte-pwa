@@ -1,21 +1,22 @@
-import { users, type NewUser } from "../db/schema"
+import { user, type newUser } from "../db/auth-schema"
 import { SQLiteDatabase } from "../db";
 import { isUserExists } from "@/utils/db";
 
-export async function addUser(data: NewUser) {
-  const isExists = await isUserExists(data.telefono);
+export async function addUser(data: newUser) {
+  const isExists = await isUserExists(data.email);
 
   if (!isExists) {
     await SQLiteDatabase
-    .insert(users)
+    .insert(user)
     .values({
-      nombre: data.nombre,
-      apellido: data.apellido,
-      telefono: data.telefono,
-      edad: data.edad,
-      password: data.password
+      name: data.name,
+      updatedAt: new Date(),
+      emailVerified: false,
+      email: data.email,
+      createdAt: new Date(),
+      image: data.image ?? null,
     })
   } else {
-    throw new Error("Ya existe un usuario con ese telefono");
+    throw new Error("Ya existe un usuario con ese correo");
   }
 }

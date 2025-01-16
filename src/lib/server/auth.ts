@@ -5,5 +5,8 @@ import { SQLiteDatabase } from "./db";
 export const auth = betterAuth({
   database: drizzleAdapter(SQLiteDatabase, {
     provider: "sqlite",
-  })
+  }),
+  emailAndPassword: {
+    enabled: true
+  }
 })

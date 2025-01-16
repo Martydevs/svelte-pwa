@@ -1,53 +1,25 @@
 import { z } from "zod";
 import { registerMessages as msg } from "$lib/values/string";
 
-export const schema = z.object({
-  nombre: z
+export const registerSchema = z.object({
+  name: z
     .string({
-      required_error: msg.register.nombre.required_error,
+      invalid_type_error: msg.register.nombre.invalid_type_error,
     })
-    .min(3, {
-      message: msg.register.nombre.message,
-    })
-    .max(20, {
-      message: msg.register.nombre.message,
-    }),
-  apellido: z
-    .string({
-      required_error: msg.register.apellido.required_error,
-      invalid_type_error: msg.register.apellido.invalid_type_error,
-    })
-    .min(3, {
-      message: msg.register.apellido.message,
-    })
-    .max(20, {
-      message: msg.register.apellido.message,
-    }),
-  telefono: z
-    .string({
-      required_error: msg.register.telefono.required_error,
-      invalid_type_error: msg.register.telefono.invalid_type_error,
-      message: msg.register.telefono.message,
-    })
-    .min(10, {
-      message: msg.register.telefono.message,
-    }),
-  edad: z
-    .number({
-      required_error: msg.register.edad.required_error,
-    })
-    .min(18, {
-      message: msg.register.edad.message,
-    })
-    .positive(),
+    .min(3, msg.register.nombre.min_error)
+    .max(20, msg.register.nombre.max_error),
+  email: z
+    .string()
+    .email(msg.register.email.invalid_type_error),
+  image: z.string().optional(),
   password: z
     .string({
-      required_error: msg.register.password.required_error,
-      invalid_type_error: msg.register.password.invalid_type_error,
+      invalid_type_error: msg.register.password.invalid_type_error
     })
-    .min(6, {
-      message: msg.register.password.message,
-    }),
-}, { required_error: msg.register.required_error });
+    .min(8, msg.register.password.min_error)
+    .max(20, msg.register.password.max_error),
+}, {
+  required_error: msg.register.required_error
+});
 
-export type RegisterFormSchema = typeof schema;
+export type RegisterSchema = z.infer<typeof registerSchema>;

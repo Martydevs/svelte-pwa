@@ -1,50 +1,45 @@
 <script lang="ts">
-  import type { ActionData, PageData } from "./$types.js";
-  import Card from "@/components/Card.svelte";
-  import Hero from "@/components/Hero.svelte";
-  import RegisterForm from "@/components/RegisterForm.svelte";
-  import LoginForm from "@/components/LoginForm.svelte";
-  import { showToastError, showToastSuccess } from "@/utils/sonner";
+  import { enhance } from "$app/forms";
 
-  interface Props {
-    data: PageData;
-    form: ActionData
-  }
+  import * as Form from "$lib/components/ui/form";
+  import { Input } from "$lib/components/ui/input";
+  import { superForm } from "sveltekit-superforms";
 
-  let { data, form } : Props = $props();
+  import type { PageData } from "./$types";
+  import { zodClient } from "sveltekit-superforms/adapters";
+  import { loginSchema } from "$lib/schemas/login";
 
-  $effect(() => {
-    if (form?.registerForm) {
-      if (!form.success) {
-        showToastError(form.message)
-      } else {
-        showToastSuccess(form.message)
-      }
-    }
-  })
+  let { data }: { data: PageData } = $props();
 
-  $effect(() => {
-    if (form?.loginForm) {
-      if (!form.success) {
-        showToastError(form.message)
-      } else {
-        showToastSuccess(form.message)
-      }
-    }
-  })
+  const form = superForm(data.form, {
+    validators: zodClient(loginSchema),
+  });
+  const { form: formData } = form;
 </script>
 
-<svelte:head>
-  <title>Home</title>
-  <meta name="description" content="Svelte demo app" />
-</svelte:head>
+<form method="POST" use:enhance class="space-y-4 px-4 py-12 w-full max-w-lg">
+  <Form.Field {form} name="email">
+    <Form.Control>
+      {#snippet children({ props })}
+        <Form.Label>Email</Form.Label>
+        <Input {...props} type="email" bind:value={$formData.email}></Input>
+      {/snippet}
+    </Form.Control>
+    <Form.FieldErrors />
+  </Form.Field>
 
-<Hero />
-<section class="w-full h-[60dvh] flex flex-col items-center justify-evenly md:flex-row lg:justify-evenly">
-  <Card title="Registrarse" description="Llena el formulario para completar tu registro">
-    <RegisterForm data={data.registerForm} />
-  </Card>
-  <Card title="Iniciar sesión" description="Inicia sesión para acceder a tu cuenta">
-    <LoginForm data={data.loginForm} />
-  </Card>
-</section>
+  <Form.Field {form} name="password">
+    <Form.Control>
+      {#snippet children({ props })}
+        <Form.Label>Contraseña</Form.Label>
+        <Input {...props} type="password" bind:value={$formData.password}
+        ></Input>
+      {/snippet}
+    </Form.Control>
+    <Form.FieldErrors />
+  </Form.Field>
+
+  <Form.Button class="submit-button">Ingresar</Form.Button>
+</form>
+
+<a href="/register">No tienes cuenta?, regístrate aqui..</a>

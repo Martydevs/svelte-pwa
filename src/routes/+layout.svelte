@@ -1,24 +1,24 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import type { Snippet } from "svelte";
+
   import { ModeWatcher } from "mode-watcher";
-  import { detectSWUpdate } from "$lib/utils/sw";
-  import { Toaster } from "@/components/ui/sonner";
+  import { Share2 } from "lucide-svelte"
+  
+  import { Toaster } from "$lib/components/ui/sonner";
+  import type { LayoutData } from "./$types";
   import "$lib/styles/app.css";
 
-  let { children } = $props();
-
-  onMount(() => {
-    detectSWUpdate();
-  });
+  let { data, children }: { data: LayoutData; children: Snippet } = $props();
 </script>
 
-<svelte:head>
-  <title>Home</title>
-  <meta name="description" content="Svelte demo app" />
-</svelte:head>
-
-<Toaster richColors />
 <ModeWatcher />
-<main class="w-full min-h-svh flex flex-col items-center">
+<Toaster richColors />
+<main class="min-h-dvh w-full flex flex-col items-center">
+  <header class="w-full h-[40dvh] flex flex-col items-center justify-center">
+    <Share2 size={90} class="text-blue-400" />
+    <h1 class="hero-title">Conexiones</h1>
+    <p class="hero-description">Una app para encontrar conexiones</p>
+  </header>
+
   {@render children()}
 </main>
