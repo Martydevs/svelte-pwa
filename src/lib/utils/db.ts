@@ -1,13 +1,13 @@
 import { SQLiteDatabase } from "@/server/db";
-import { users } from "@/server/db/schema";
+import { user } from "@/server/db/auth-schema";
 import { eq } from "drizzle-orm";
 
-export async function isUserExists(tel: string) {
+export async function isUserExists(email: string) {
   const query = await SQLiteDatabase
     .select()
-    .from(users)
+    .from(user)
     .where(
-      eq(users.telefono, tel)
+      eq(user.email, email)
     ).limit(1);
   
   if (query.length > 0) {

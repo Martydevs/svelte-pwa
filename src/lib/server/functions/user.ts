@@ -1,4 +1,4 @@
-import { user, type newUser } from "../db/auth-schema"
+import { user, type newUser } from "../db/auth-schema";
 import { SQLiteDatabase } from "../db";
 import { isUserExists } from "@/utils/db";
 
@@ -9,13 +9,15 @@ export async function addUser(data: newUser) {
     await SQLiteDatabase
     .insert(user)
     .values({
+      id: data.id,
       name: data.name,
-      updatedAt: new Date(),
-      emailVerified: false,
+      password: data.password,
       email: data.email,
-      createdAt: new Date(),
-      image: data.image ?? null,
-    })
+      emailVerified: data.emailVerified,
+      image: data.image,
+      createdAt: data.createdAt,
+      updatedAt: data.updatedAt,
+    });
   } else {
     throw new Error("Ya existe un usuario con ese correo");
   }
