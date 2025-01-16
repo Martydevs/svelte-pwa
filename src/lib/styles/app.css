@@ -79,11 +79,11 @@
 
 @layer components {
   .hero-title {
-    @apply text-6xl font-extrabold leading-tight tracking-tighter md:text-8xl;
+    @apply text-4xl font-extrabold leading-tight tracking-tighter sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-7xl text-balance;
   }
 
   .hero-description {
-    @apply mt-6 text-lg text-muted-foreground md:text-xl;
+    @apply mt-6 text-xl text-muted-foreground sm:text-2xl md:text-2xl lg:text-2xl xl:text-2xl 2xl:text-4xl text-pretty;
   }
 
   .submit-button {
