@@ -17,7 +17,7 @@
   const { form: formData } = form;
 </script>
 
-<form method="POST" use:enhance class="space-y-4 px-4 py-12 w-full max-w-lg">
+<form method="POST" use:enhance class="space-y-4 px-4 py-12 w-full max-w-lg h-auto">
   <Form.Field {form} name="email">
     <Form.Control>
       {#snippet children({ props })}
