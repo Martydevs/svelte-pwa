@@ -5,7 +5,7 @@
     Field,
     FieldErrors,
     Label,
-    Button
+    Button,
   } from "$lib/components/ui/form";
   import { Input } from "$lib/components/ui/input";
   import type { PageData } from "./$types";
@@ -76,7 +76,7 @@
     <Description>Debe tener al menos 8 caracteres</Description>
     <FieldErrors />
   </Field>
-  <Button class="submit-button" formaction="?/register">Registrarse</Button>
+  <Button class="submit-button">Registrarse</Button>
 </form>
 
 <a href="/">Ya tienes cuenta?, inicia sesión aquí</a>

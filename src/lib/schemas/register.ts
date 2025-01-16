@@ -17,6 +17,7 @@ export const registerSchema = z.object(
       })
       .min(8, msg.register.password.min_error)
       .max(20, msg.register.password.max_error),
+    isHost: z.boolean().optional().default(false),
   },
   {
     required_error: msg.register.required_error,

@@ -16,6 +16,7 @@ export const loginSchema = z.object(
       .min(8, msg.login.password.min_error)
       .max(20, msg.login.password.max_error)
       .nonempty(msg.login.password.required_error),
+    isHost: z.boolean().optional().default(false),
   },
   {
     required_error: msg.login.required_error,
