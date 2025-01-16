@@ -22,4 +22,4 @@ export const registerSchema = z.object({
   required_error: msg.register.required_error
 });
 
-export type RegisterSchema = z.infer<typeof registerSchema>;
+export type RegisterSchema = typeof registerSchema;
